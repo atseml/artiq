@@ -687,7 +687,9 @@ class GenericStandalone(StandaloneBase):
         self.rtio_channels = []
         eem_7series.add_peripherals(self, description["peripherals"])
         if hw_rev == "v2.1":
-            self.comb += self.platform.request("eem_power_en").eq(1)
+            eem_power_en = self.platform.request("eem_power_en")
+            eem_fault_n = self.platform.request("eem_fault_n")
+            self.comb += eem_power_en.eq(eem_fault_n)
         if hw_rev in ("v1.0", "v1.1"):
             for i in (1, 2):
                 print("SFP LED at RTIO channel 0x{:06x}".format(len(self.rtio_channels)))
@@ -746,7 +748,9 @@ class GenericMaster(MasterBase):
         self.rtio_channels = []
         eem_7series.add_peripherals(self, description["peripherals"])
         if hw_rev == "v2.1":
-            self.comb += self.platform.request("eem_power_en").eq(1)
+            eem_power_en = self.platform.request("eem_power_en")
+            eem_fault_n = self.platform.request("eem_fault_n")
+            self.comb += eem_power_en.eq(eem_fault_n)
         if hw_rev in ("v1.1", "v2.0", "v2.1"):
             for i in range(3):
                 print("USER LED at RTIO channel 0x{:06x}".format(len(self.rtio_channels)))
@@ -797,7 +801,9 @@ class GenericSatellite(SatelliteBase):
         self.rtio_channels = []
         eem_7series.add_peripherals(self, description["peripherals"])
         if hw_rev == "v2.1":
-            self.comb += self.platform.request("eem_power_en").eq(1)
+            eem_power_en = self.platform.request("eem_power_en")
+            eem_fault_n = self.platform.request("eem_fault_n")
+            self.comb += eem_power_en.eq(eem_fault_n)
         if hw_rev in ("v1.1", "v2.0", "v2.1"):
             for i in range(3):
                 print("USER LED at RTIO channel 0x{:06x}".format(len(self.rtio_channels)))
