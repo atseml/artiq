@@ -174,12 +174,13 @@
     "src-migen": {
       "flake": false,
       "locked": {
-        "lastModified": 1749544952,
-        "narHash": "sha256-NshlPiORBHWljSUP5bB7YBxe7k8dW0t8UXOsIq2EK8I=",
-        "owner": "m-labs",
-        "repo": "migen",
-        "rev": "6e3a9e150fb006dabc4b55043d3af18dbfecd7e8",
-        "type": "github"
+        "lastModified": 1755145694,
+        "narHash": "sha256-gRAvl5cUvrjq4t7htXsDBt4F8MEbHXFZoS0jbhrEs1I=",
+        "ref": "push-zyxltmsooqoz",
+        "rev": "229f6a2bb752c661a2c12008155cf19ec1f4ab5f",
+        "revCount": 2060,
+        "type": "git",
+        "url": "https://github.com/atseml/migen.git"
       },
       "original": {
         "owner": "m-labs",
@@ -190,14 +191,14 @@
     "src-misoc": {
       "flake": false,
       "locked": {
-        "lastModified": 1747128843,
-        "narHash": "sha256-TCFPoaQFaFCg3my3wyl3Gkz4ZnyzWa/ZXbcZG/OEsCU=",
-        "ref": "refs/heads/master",
-        "rev": "9e07cf5f3b7d4949d3b775d4d946ca22900ab528",
-        "revCount": 2498,
+        "lastModified": 1755072174,
+        "narHash": "sha256-zMuerLb6RSy1kJSTTd9JTX8q9jCzZtJil7owqU9wb14=",
+        "ref": "push-nwklkpqtpovw",
+        "rev": "81b17e9b8b490492f2533a5889ceff34f18cfbc9",
+        "revCount": 2499,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/m-labs/misoc.git"
+        "url": "https://github.com/atseml/misoc.git"
       },
       "original": {
         "submodules": true,
