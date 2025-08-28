@@ -692,6 +692,8 @@ class GenericStandalone(StandaloneBase):
                 self.platform.request("eem_power_en"),
                 self.platform.request("eem_fault_n"),
             )
+            self.csr_devices.append("eem_power_control")
+            self.interrupt_devices.append("eem_power_control")
         if hw_rev in ("v1.0", "v1.1"):
             for i in (1, 2):
                 print("SFP LED at RTIO channel 0x{:06x}".format(len(self.rtio_channels)))
@@ -754,6 +756,8 @@ class GenericMaster(MasterBase):
                 self.platform.request("eem_power_en"),
                 self.platform.request("eem_fault_n"),
             )
+            self.csr_devices.append("eem_power_control")
+            self.interrupt_devices.append("eem_power_control")
         if hw_rev in ("v1.1", "v2.0", "v2.1"):
             for i in range(3):
                 print("USER LED at RTIO channel 0x{:06x}".format(len(self.rtio_channels)))
@@ -808,6 +812,8 @@ class GenericSatellite(SatelliteBase):
                 self.platform.request("eem_power_en"),
                 self.platform.request("eem_fault_n"),
             )
+            self.csr_devices.append("eem_power_control")
+            self.interrupt_devices.append("eem_power_control")
         if hw_rev in ("v1.1", "v2.0", "v2.1"):
             for i in range(3):
                 print("USER LED at RTIO channel 0x{:06x}".format(len(self.rtio_channels)))

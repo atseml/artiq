@@ -900,6 +900,8 @@ pub extern fn main() -> i32 {
     irq::enable_interrupts();
     #[cfg(has_wrpll)]
     irq::enable(csr::WRPLL_INTERRUPT);
+    #[cfg(has_eem_power_control)]
+    irq::enable(csr::EEM_POWER_CONTROL_INTERRUPT);
 
     clock::init();
     unsafe {
@@ -1003,6 +1005,11 @@ fn startup() {
             Err(_) => { info!("SED spreading disabled by default"); toggle_sed_spread(0) },
         }
     });
+
+    #[cfg(has_eem_power_mgmt)]
+    unsafe {
+        csr::eem_power_mgmt::ev_enable_write(1);
+    }
 
     #[cfg(has_drtio_eem)]
     {
@@ -1170,6 +1177,11 @@ pub extern fn exception(_regs: *const u32) {
             #[cfg(has_wrpll)]
             if irq::is_pending(csr::WRPLL_INTERRUPT) {
                 si549::wrpll::interrupt_handler();
+            }
+
+            #[cfg(has_eem_power_control)]
+            if irq::is_pending(csr::EEM_POWER_CONTROL_INTERRUPT) {
+                panic!("EEM power fault detected! Cutting EEM power...");
             }
         },
 
