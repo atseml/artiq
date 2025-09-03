@@ -135,11 +135,6 @@ fn startup() {
         io_expander1.service().unwrap();
     }
     rtio_clocking::init();
-    
-    #[cfg(has_eem_power_mgmt)]
-    unsafe {
-        csr::eem_power_mgmt::ev_enable_write(1);
-    }
 
     #[cfg(has_drtio_eem)]
     drtio_eem::init();
@@ -252,6 +247,16 @@ fn startup() {
     io.spawn(4096, grabber_thread);
 
     let mut net_stats = ethmac::EthernetStatistics::new();
+
+    #[cfg(has_eem_power_control)]
+    {
+        unsafe {
+            csr::eem_power_control::ev_enable_write(1);
+            csr::eem_power_control::power_en_write(1);
+        }
+        info!("EEM power enabled");
+    }
+
     loop {
         scheduler.run();
         scheduler.run_network();

@@ -1006,11 +1006,6 @@ fn startup() {
         }
     });
 
-    #[cfg(has_eem_power_mgmt)]
-    unsafe {
-        csr::eem_power_mgmt::ev_enable_write(1);
-    }
-
     #[cfg(has_drtio_eem)]
     {
         drtio_eem::init();
@@ -1034,6 +1029,15 @@ fn startup() {
 
     #[cfg(all(soc_platform = "efc", has_converter_spi))]
     ad9117::init().expect("AD9117 initialization failed");
+
+    #[cfg(has_eem_power_control)]
+    {
+        unsafe {
+            csr::eem_power_mgmt::ev_enable_write(1);
+            csr::eem_power_mgmt::power_en_write(1);
+        }
+        info!("EEM power enabled");
+    }
     
     loop {
         let mut router = routing::Router::new();
